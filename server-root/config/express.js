@@ -30,10 +30,20 @@ module.exports = (app) => {
 
     app.use(express.static(path.resolve(__basedir, 'static')));
 
+    console.log('Origin : '+ config.origin);
+    
     app.use(cors({
         origin: config.origin,
         credentials: true
     }));
+
+    app.use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', config.origin);
+        res.setHeader('Access-Control-Allow-Credentials', 'true');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+        res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin');
+        next();
+      });
 
     app.use('/api', apiRouter);
 
