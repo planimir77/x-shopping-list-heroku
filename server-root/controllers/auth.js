@@ -44,6 +44,7 @@ function register(req, res, next) {
 }
 
 function login(req, res, next) {
+    console.log('Login atached');
     const { email, password, rememberMe } = req.body;
 
     const maxCookieAge = {
