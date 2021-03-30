@@ -4,7 +4,7 @@ const config = {
     development: {
         port: process.env.PORT || 4200,
         dbURL: process.env.DB_URL_CREDENTIALS,
-        origin: []
+        origin: ['https://x-shopping-list.herokuapp.com']
     },
     production: {
         port: process.env.PORT || 4200,
