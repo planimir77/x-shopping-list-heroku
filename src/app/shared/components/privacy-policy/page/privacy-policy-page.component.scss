@@ -1,0 +1,20 @@
+div {
+  background: antiquewhite !important;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+  color: #333;
+  line-height: 24px !important;
+
+  padding: 1rem !important;
+  @media (min-width: 600px) {
+    padding: 3rem !important;
+  }
+  @media (min-width: 1000px) {
+    padding: 4rem !important;
+  }
+}
+h1 {
+  font-size: 36px !important;
+  text-align: center !important;
+}
+

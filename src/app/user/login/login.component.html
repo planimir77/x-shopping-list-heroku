@@ -1,0 +1,129 @@
+<div class="mx-sm-5 py-5 px-3">
+  <div class="justify-content-center trim">
+    <div class="row px-5 pt-4 pb-2">
+      <div class="col-6">
+        <a routerLink="/user/register" class="text-light" target="_blank">
+          Create new account
+        </a>
+      </div>
+      <div class="col-6 text-right">
+        <a routerLink="/" class="text-light" target="_blank">
+          Forgot password?
+        </a>
+      </div>
+    </div>
+
+    <div class="card bg-white-transparent mx-3">
+      <div class="text-muted text-center mt-3 mb-2">
+        <small class="yellow">Login with</small>
+      </div>
+      <div class="btn-wrapper text-center row justify-content-center pb-2">
+        <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <img src="./assets/images/icons/github.svg" />
+          </span>
+          <span class="btn-inner--text">Github</span>
+        </a>
+        <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+          <span class="btn-inner--icon">
+            <img src="./assets/images/icons/google.svg" />
+          </span>
+          <span class="btn-inner--text">Google</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="card bg-transparent shadow border-0">
+      <div class="card-body py-lg-5">
+        <div class="text-center text-muted mb-4">
+          <small class="yellow">Or login with credentials</small>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group mb-3" [ngClass]="{ focused: focus === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>email</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+                type="email"
+                (focus)="focus = true"
+                (blur)="focus = false"
+              />
+            </div>
+            <p *ngIf="email.invalid && email.errors && email.touched">
+              <small class="text-danger" *ngIf="email.hasError('required')">
+                Email is required!
+              </small>
+              <small class="text-danger" *ngIf="email.hasError('pattern')">
+                Please provide a valid email address
+              </small>
+            </p>
+          </div>
+          <div class="form-group" [ngClass]="{ focused: focus1 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>vpn_key</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+                type="password"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+              />
+            </div>
+            <p *ngIf="password.invalid && password.errors && password.touched">
+              <small class="text-danger" *ngIf="password.hasError('required')">
+                Password is required!
+              </small>
+              <small class="text-danger" *ngIf="password.hasError('minlength')">
+                The minimum length for this field is
+                {{ password.errors.minlength.requiredLength }}
+                characters.
+              </small>
+            </p>
+          </div>
+          <div class="form-group mt-4">
+            <div class="custom-control custom-control-alternative custom-checkbox text-center">
+              <input
+                class="custom-control-input"
+                formControlName="rememberMe"
+                id="rememberMe"
+                type="checkbox"
+              />
+              <label class="custom-control-label pt-1" for="rememberMe">
+                <span>Remember me</span>
+              </label>
+            </div>
+          </div>
+          <p *ngIf="errorMessage" class="text-danger text-center mb-0 mt-1">
+            {{ errorMessage }}
+          </p>
+          <!-- Loading -->
+          <app-loading [isLoading]="isLoading"></app-loading>
+          <!-- Submit -->
+          <div class="text-center">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="my-4"
+              [class.btn-login]="!loginForm.invalid"
+              [disabled]="loginForm.invalid"
+            >
+              Login
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

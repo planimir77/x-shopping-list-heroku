@@ -1,0 +1,34 @@
+<form [formGroup]="addFormGroup" (ngSubmit)="onSubmit()" class="row">
+  <button
+    aria-label="Add item to shopping list"
+    class="addButton mat-focus-indicator mat-icon-button mat-button-base"
+    mat-icon-button
+    [disabled]="!addFormGroup.valid"
+    type="submit"
+  >
+    <span class="mat-button-wrapper icon">
+      <mat-icon
+        class="addIcon mat-icon notranslate material-icons mat-icon-no-color"
+        role="img"
+        aria-hidden="true"
+        data-mat-icon-type="font"
+        >add</mat-icon
+      ></span
+    ><span
+      class="mat-button-ripple mat-ripple mat-button-ripple-round"
+      matripple=""
+    ></span
+    ><span class="mat-button-focus-overlay"></span>
+  </button>
+  <mat-form-field class="add-form-field">
+    <mat-label>Add product</mat-label>
+    <input matInput type="text" formControlName="itemName" />
+    <mat-error *ngIf="checkError('itemName', 'required')"></mat-error>
+    <mat-error *ngIf="checkError('itemName', 'minlength')"
+      >Item should be more than 2 characters</mat-error
+    >
+    <mat-error *ngIf="checkError('itemName', 'maxlength')"
+      >Item should be less than 50 characters</mat-error
+    >
+  </mat-form-field>
+</form>

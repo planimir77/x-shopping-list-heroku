@@ -1,0 +1,74 @@
+<img src="../assets/images/coffee.jpg" #bgImage hidden/>
+<mat-sidenav-container>
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="'over'"
+  >
+    <!--<mat-toolbar>Menu</mat-toolbar>-->
+    <mat-nav-list (click)="drawer.toggle()" color="primary">
+      <a mat-list-item [routerLink]="(isLogged$ | async) ? ['/shoppinglist/dashboard'] : ['/user/login']"
+        ><mat-icon>dashboard</mat-icon>Dashboard</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item *ngIf="isLogged$ | async" [routerLink]="" (click)="routeToFavorite()">
+        <mat-icon>star</mat-icon>Favorite</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="#"
+        ><mat-icon>person</mat-icon>User Profile</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="#">
+        <mat-icon>library_books</mat-icon>Typography</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="#"> <mat-icon>location_on</mat-icon>Maps</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="#">
+        <mat-icon>calendar_today</mat-icon>Calendar</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/privacy-policy"> <mat-icon>privacy_tip</mat-icon>Privacy Policy</a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!-- Toolbar -->
+    <mat-toolbar color="primary" role="toolbar">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="drawer.opened === false"
+      >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <div class="spacer"></div>
+      <a routerLink="/">
+        <span>
+            <span *ngIf="currentUser?.username; else x">{{ currentUser?.username | titlecase | endWithS }}</span>
+            <ng-template #x>
+                <span>X</span>
+            </ng-template>
+             Shopping List</span>
+      </a>
+      <div class="spacer"></div>
+      <a *ngIf="isLogged$ | async; else login" (click)="logout()">Logout</a>
+      <ng-template #login>
+        <a routerLink="user/login">Login</a>
+      </ng-template>
+    </mat-toolbar>
+
+    <!-- Main -->
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

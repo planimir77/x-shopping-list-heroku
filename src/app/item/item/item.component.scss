@@ -1,0 +1,31 @@
+.toggle-menu-button {
+  width: 0px !important;
+}
+.menu-icon {
+  font-size: 20px !important;
+}
+.mat-menu-button-text {
+  color: "khaki" !important;
+}
+.item-content {
+  display: flex !important;
+  :hover {
+    cursor: pointer;
+  }
+}
+.item-menu {
+  padding-top: 14px !important;
+}
+.item-text {
+  padding-top: 0.7rem !important;
+  font-size: 20px;
+  font-family: "Verdana", sans-serif;
+}
+.width-fill-available {
+  width: -webkit-fill-available;
+}
+::ng-deep .mat-menu-background {
+  background-image: url("/assets/images/coffee.jpg");
+  background-size: inherit;
+  background-position-x: revert;
+}

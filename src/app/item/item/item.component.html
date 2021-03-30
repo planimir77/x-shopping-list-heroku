@@ -1,0 +1,40 @@
+<div mat-line class="item-content">
+  <button
+    mat-icon-button
+    #triggerBtn
+    class="toggle-menu-button"
+    [matMenuTriggerFor]="menu"
+    aria-label="Toggle menu"
+  >
+  </button>
+  <mat-menu #menu="matMenu" yPosition="below" class="mat-menu mat-menu-background">
+    <button mat-menu-item (click)="onItemRemove()">
+      <mat-icon [ngStyle]="{ color: '#ff1f00' }">remove_circle </mat-icon>
+      <span [ngStyle]="{ color: 'khaki' }">Remove {{ item.itemName }}</span>
+    </button>
+  </mat-menu>
+  <div class="item-content width-fill-available">
+    <div matRipple (click)="openMatMenu()" class="item-content width-fill-available">
+      <span [hidden]="!isOwner" mat-button class="item-menu">
+        <mat-icon class="menu-icon">more_vert</mat-icon>
+      </span>
+      <span
+        mat-button
+        class="item-text width-fill-available"
+        [class.is-not-owner]="!isOwner"
+        [innerHTML]="item.itemName | twoRows"
+      ></span>
+    </div>
+    <button
+      class="mr-2"
+      mat-icon-button
+      matRipple
+      (click)="subscribeToBasket(item._id)"
+    >
+      <mat-icon [ngStyle]="{ color: isInBasket() ? 'lime' : '#FFFFFF' }"
+        >shopping_cart</mat-icon
+      >
+    </button>
+  </div>
+</div>
+<mat-divider></mat-divider>

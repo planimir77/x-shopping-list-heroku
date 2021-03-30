@@ -1,0 +1,72 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <!-- Loading -->
+  <app-loading [isLoading]="!shoppinglists"></app-loading>
+  <!-- Loading -->
+  <div
+    *ngIf="shoppinglists"
+    class="content"
+    fxLayout="row wrap"
+    fxLayout.xs="column"
+    fxLayoutAlign="space-around center"
+  >
+    <mat-card
+      *ngFor="let shoppinglist of shoppinglists; let i = index"
+      fxFlex="calc(33%)"
+      fxFlex.sm="calc(50%)"
+      (click)="onClick(shoppinglist._id)"
+      matRipple
+    >
+      <mat-card-header class="mb-4">
+        <mat-card-title class="card-title">
+          {{ shoppinglist.shoppinglistName }}
+          <button
+            (click)="onFavoriteClick(shoppinglist._id, i, shoppinglist.favorite)"
+            mat-icon-button
+            class="button-left-corner"
+            role="button"
+            title="Toggle Favorite"
+          >
+            <mat-icon *ngIf="shoppinglist.favorite" class="favorite-icon">star</mat-icon>
+            <mat-icon *ngIf="!shoppinglist.favorite" class="favorite-icon">star_outline</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="button-right-corner"
+            [matMenuTriggerFor]="menu"
+            aria-label="Toggle menu"
+            (menuOpened)="menuOpened()"
+            (menuClosed)="menuClosed()"
+          >
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" xPosition="before" class="mat-menu mat-menu-background">
+            <button class="edit-button" mat-menu-item (click)="edit(shoppinglist._id, shoppinglist.shoppinglistName, i)">
+              <mat-icon [ngStyle]="{ color: '#F9F871' }">edit</mat-icon
+              ><span [ngStyle]="{ color: 'khaki' }"
+                >Edit {{ shoppinglist.shoppinglistName }}</span
+              >
+            </button>
+            <mat-divider></mat-divider>
+            <button class="delete-button" mat-menu-item (click)="delete(shoppinglist._id, i, shoppinglist.shoppinglistName)">
+              <mat-icon [ngStyle]="{ color: '#C1402D' }">remove_circle</mat-icon
+              ><span [ngStyle]="{ color: 'khaki' }"
+                >Remove {{ shoppinglist.shoppinglistName }}</span
+              >
+            </button>
+          </mat-menu>
+        </mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <mat-divider></mat-divider>
+      <div class="mt-6">
+        <mat-card-content
+          class="card-content"
+          *ngFor="let item of shoppinglist.items.slice(0, 5)"
+        >
+          <div>{{ item.itemName }}</div>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>

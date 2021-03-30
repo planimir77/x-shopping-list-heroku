@@ -1,0 +1,35 @@
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  .spacer {
+    flex: 1;
+  }
+  
+  ::ng-deep .mat-sidenav {
+    background-image: url("/assets/images/coffee.jpg");
+    background-size: cover;
+    background-position-x: right;
+  }
+  
+  div.main-content {
+    min-height: 83%;
+    background-color: whitesmoke;
+    /*  BACKGROUND IMAGE */
+    background-image: url("/assets/images/coffee.jpg");
+  
+    /* Center and scale the image nicely */
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  ::ng-deep .mat-sidenav-container {
+    // /* Full height */
+    height: 100%;
+  }
+  a {
+    text-decoration: none;
+  }
+  

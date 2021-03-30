@@ -1,0 +1,39 @@
+<div class="width flex justify-content-center">
+  <div class="pt-5 text-center">
+    <h1 class="font-bigger">
+      <span> Your shopping list </span>
+      <br />
+      <span class="font-weight-light">
+        anytime,<br />
+        anywhere!
+      </span>
+    </h1>
+    <h1>
+      <a
+        [routerLink]="
+          (isLogged$ | async) ? ['/shoppinglist/create'] : ['/user/login']
+        "
+        mat-fab
+        color="primary"
+        class="add-button"
+      >
+        <mat-icon>add</mat-icon>
+      </a>
+      <br />Just create your personal list
+    </h1>
+    <h1>Personal ... Not quite!</h1>
+    <h3 class="text-center">
+      If you want you can share it<br />
+      with your family, friends or whoever you want. <br />You can create
+      different lists according to your needs:
+    </h3>
+    <div class="d-flex justify-content-center row pb-5 mb0">
+      <h3 class="col-md-4 col-sm-6 text-left">-grocery store</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-food additives</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-pharmacy</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-hardware</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-shopping centre</h3>
+      <h3 class="col-md-4 col-sm-6 text-left">-or whatever you can think of</h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+mat-icon {
+  display: none;
+}
+dialog-container-info{
+  background-image: url("/assets/images/coffee.jpg");
+  background-position: initial;
+  background-position-x: right;
+  border: 1px #673ab7 solid;
+}
+::ng-deep .dialog-container-info .mat-dialog-container {
+  @extend dialog-container-info;
+  .btn-cancel {
+    display: none;
+  }
+}
+::ng-deep .dialog-container-delete .mat-dialog-container {
+  @extend dialog-container-info;
+  .mat-dialog-title {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+  .warning-icon {
+    display: inline-block;
+    color: #c1402d;
+    font-size: 30px;
+  }
+}
+.mat-dialog-actions {
+  justify-content: flex-end !important;
+}
+.btn-ok {
+  border-color: #673ab772 !important;
+}
+.btn-ok:hover {
+  color: white;
+  border-color: transparent !important;
+  background-color: #673ab796 !important;
+}
+.btn-cancel {
+  border-color: #673ab772 !important;
+}
+.btn-cancel:hover {
+  background-color: #fff59d85;
+  color: black;
+}
+.content {
+  margin-top: 0.5rem !important;
+  margin-right: 4rem !important;
+}
+.line {
+  display: flex;
+  h1 {
+    margin-bottom: 0.5rem !important;
+  }
+}

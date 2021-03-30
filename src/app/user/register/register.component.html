@@ -1,0 +1,194 @@
+<div class="mx-sm-5 pb-5 px-3">
+  <div class="justify-content-center pt-4 trim">
+    <div class="card bg-transparent shadow border-0 mt-3">
+      <div class="card bg-white-transparent mx-3">
+        <div class="text-muted text-center mt-3 mb-2">
+          <small class="yellow">Sign up with</small>
+        </div>
+        <div class="btn-wrapper text-center row justify-content-center pb-4">
+          <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <span class="btn-inner--icon">
+              <img src="./assets/images/icons/github.svg" />
+            </span>
+            <span class="btn-inner--text">Github</span>
+          </a>
+          <a routerLink="javascript:void(0)" class="btn btn-neutral btn-icon">
+            <span class="btn-inner--icon">
+              <img src="./assets/images/icons/google.svg" />
+            </span>
+            <span class="btn-inner--text">Google</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="card-body py-lg-5">
+        <div class="text-center text-muted mb-4">
+          <small class="yellow">Or sign up with credentials</small>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <!-- username -->
+          <div class="form-group" [ngClass]="{ focused: focus === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>person</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="username"
+                placeholder="Username"
+                type="text"
+                (focus)="focus = true"
+                (blur)="focus = false"
+              />
+            </div>
+            <p *ngIf="username.invalid && username.errors && username.touched">
+              <small class="text-danger" *ngIf="username.hasError('required')">
+                Username is required!
+              </small>
+              <small class="text-danger" *ngIf="username.hasError('minlength')">
+                The minimum length for this field is
+                {{ username.errors.minlength.requiredLength }}
+                characters.
+              </small>
+              <small class="text-danger" *ngIf="username.hasError('maxlength')">
+                The maximum length for this field is
+                {{ username.errors.maxlength.requiredLength }}
+                characters.
+              </small>
+            </p>
+          </div>
+          <!-- email -->
+          <div class="form-group" [ngClass]="{ focused: focus1 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>email</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="email"
+                placeholder="Email"
+                type="email"
+                (focus)="focus1 = true"
+                (blur)="focus1 = false"
+              />
+            </div>
+            <p *ngIf="email.invalid && email.errors && email.touched">
+              <small class="text-danger" *ngIf="email.hasError('required')">
+                Email is required!
+              </small>
+              <small class="text-danger" *ngIf="email.hasError('pattern')">
+                Please provide a valid email address
+              </small>
+            </p>
+          </div>
+          <!-- password -->
+          <div class="form-group" [ngClass]="{ focused: focus2 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>vpn_key</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="password"
+                placeholder="Password"
+                type="password"
+                name="password"
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+              />
+            </div>
+            <p *ngIf="password.invalid && password.errors && password.touched">
+              <small class="text-danger" *ngIf="password.hasError('required')">
+                Password is required!
+              </small>
+              <small class="text-danger" *ngIf="password.hasError('minlength')">
+                The minimum length for this field is
+                {{ password.errors.minlength.requiredLength }}
+                characters.
+              </small>
+            </p>
+          </div>
+          <!-- rePassword -->
+          <div class="form-group" [ngClass]="{ focused: focus2 === true }">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text">
+                  <mat-icon>vpn_key</mat-icon>
+                </span>
+              </div>
+              <input
+                class="form-control"
+                formControlName="rePassword"
+                placeholder="Confirm password"
+                type="password"
+                ngValidateEqual="password"
+                (focus)="focus2 = true"
+                (blur)="focus2 = false"
+              />
+            </div>
+            <p
+              *ngIf="
+                rePassword.touched && (rePassword.invalid || form.hasError('notEqual')) &&  (rePassword.errors || form.hasError('notEqual'))  
+              "
+            >
+              <small
+                class="text-danger"
+                *ngIf="rePassword.hasError('required')"
+              >
+                Please confirm password!
+              </small>
+              <small
+                class="text-danger"
+                *ngIf="!rePassword.hasError('required') && form.hasError('notEqual') && password.valid"
+              >
+                Passwords Don't Match
+              </small>
+            </p>
+          </div>
+          <!-- Privacy Policy -->
+          <div class="row my-4">
+            <div class="col-12 text-center">
+              <div
+                class="custom-control custom-control-alternative custom-checkbox"
+              >
+                <input
+                  class="custom-control-input"
+                  formControlName="privacyPolicy"
+                  id="customCheckRegister"
+                  type="checkbox"
+                />
+                <label class="custom-control-label pt-1" for="customCheckRegister">
+                  <span
+                    >I agree with the
+                    <a (click)="openDialog()">Privacy Policy</a>
+                  </span>
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- Loading -->
+          <app-loading [isLoading]="isLoading"></app-loading>
+          <!-- Submit -->
+          <div class="text-center">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="mt-4"
+              [class.btn-create]="!form.invalid"
+              [disabled]="form.invalid"
+            >
+              Create account
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

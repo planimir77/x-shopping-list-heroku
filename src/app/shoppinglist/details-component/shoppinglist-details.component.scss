@@ -1,0 +1,214 @@
+:host {
+  .mat-icon {
+    font-size: 36px;
+    &.share {
+      font-size: 62px;
+    }
+  }
+}
+mat-tab-group {
+  @media (min-width: 665px) {
+    max-width: 600px !important;
+  }
+  margin: auto !important;
+  padding-bottom: 3rem !important;
+  ::ng-deep .mat-tab-header {
+    margin-bottom: 3rem !important;
+  }
+
+  ::ng-deep .mat-tab-label {
+    justify-content: space-around !important;
+  }
+}
+mat-tab-group.is-owner {
+  ::ng-deep .mat-tab-label {
+    min-width: 33% !important;
+  }
+}
+mat-tab-group.is-not-owner {
+  ::ng-deep .mat-tab-label {
+    min-width: 50% !important;
+  }
+}
+.center div {
+  text-align: center !important;
+}
+.link {
+  flex-basis: 0;
+  flex-grow: 1;
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+.teaching-bubble {
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI",
+    -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+  font-weight: 400;
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 15px;
+  outline: transparent;
+  z-index: 1001;
+  width: 100px;
+  display: block;
+  max-width: 100px;
+  border: 0px;
+  animation-name: css-469;
+  animation-duration: 300ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  top: 80px;
+  visibility: hidden;
+}
+@keyframes bubble-body-animation {
+  0% {
+    background-color: #31313100;
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+  }
+  10% {
+    background-color: #31313100;
+    color: rgba(255, 255, 255, 0.105);
+    border-color: rgba(255, 255, 255, 0.105);
+  }
+  20% {
+    background-color: #31313123;
+    color: rgba(255, 255, 255, 0.205);
+    border-color: rgba(255, 255, 255, 0.205);
+  }
+  30% {
+    background-color: #3131314b;
+    color: rgba(255, 255, 255, 0.386);
+    border-color: rgba(255, 255, 255, 0.386);
+  }
+  40% {
+    background-color: #31313160;
+    color: rgba(255, 255, 255, 0.753);
+    border-color: rgba(255, 255, 255, 0.653);
+  }
+  50% {
+    background-color: #31313177;
+    color: white;
+    border-color: white;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 6.4px 14.4px 0px,
+      rgba(0, 0, 0, 0.22) 0px 1.2px 3.6px 0px;
+  }
+  80% {
+    background-color: #31313160;
+    color: rgba(255, 255, 255, 0.753);
+    border-color: rgba(255, 255, 255, 0.653);
+  }
+  85% {
+    background-color: #3131314b;
+    color: rgba(255, 255, 255, 0.386);
+    border-color: rgba(255, 255, 255, 0.386);
+  }
+  90% {
+    background-color: #31313123;
+    color: rgba(255, 255, 255, 0.205);
+    border-color: rgba(255, 255, 255, 0.205);
+  }
+  95% {
+    background-color: #31313100;
+    color: rgba(255, 255, 255, 0.105);
+    border-color: rgba(255, 255, 255, 0.105);
+  }
+  100% {
+    background-color: #31313100;
+    color: rgba(255, 255, 255, 0);
+    border-color: rgba(255, 255, 255, 0);
+  }
+}
+@keyframes bubble-arrow-up-animation {
+  0% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0);
+  }
+  10% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.105);
+  }
+  20% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.205);
+  }
+  30% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.386);
+  }
+  40% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.653);
+  }
+  50% {
+    border-bottom: 10px solid white;
+  }
+  80% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.653);
+  }
+  85% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.386);
+  }
+  90% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.205);
+  }
+  95% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0.105);
+  }
+  100% {
+    border-bottom: 10px solid rgba(255, 255, 255, 0);
+  }
+}
+// Reusable animation
+animated-bubble {
+  .bubble-body {
+    animation-name: bubble-body-animation;
+    animation-duration: 2s;
+  }
+  .bubble-arrow-up {
+    animation-name: bubble-arrow-up-animation;
+    animation-duration: 2s;
+  }
+}
+.teaching-bubble.animated {
+  @extend animated-bubble;
+}
+.link:hover {
+  .teaching-bubble {
+    visibility: visible !important;
+    @extend animated-bubble;
+  }
+}
+.bubble-body {
+  overflow: hidden;
+  position: relative;
+  border-radius: 15px;
+  border-style: solid;
+  color: transparent;
+  padding: 10px 14px;
+}
+.bubble-arrow-up {
+  position: absolute;
+  left: 40px;
+  top: -10px;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+}
+.btn.focus, .btn:focus {
+  outline: none;
+  box-shadow: none;
+}
+.my-6 {
+  margin-top: 3rem!important;
+  margin-bottom: 10rem!important;
+}
+::ng-deep .warning {
+  background:#31313177 !important;
+  color: white !important;
+  margin-top: 240px !important;
+  border: 1px solid white;
+  .mat-simple-snackbar{
+    font-size: 16px !important;
+    justify-content: center !important;
+  }
+}

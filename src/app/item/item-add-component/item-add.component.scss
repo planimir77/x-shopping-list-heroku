@@ -1,0 +1,46 @@
+.mat-icon-button {
+  line-height: 45px;
+}
+:host {
+  .mat-icon {
+    font-size: 32px;
+    color: lime;
+  }
+}
+form {
+  padding-left: 1.4rem !important;
+  padding-right: 1.4rem !important;
+}
+
+::ng-deep .add-form-field {
+  margin-left: 1rem;
+  width: calc(100% - 6rem);
+
+  &.ng-untouched {
+    &.mat-focused {
+      .mat-form-field-label {
+        color: #b88fff !important;
+      }
+    }
+  }
+
+  &.ng-touched {
+    &.ng-valid {
+      &.mat-focused {
+        .mat-form-field-label {
+          color: #b88fff !important;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .warning {
+  background: yellow !important;
+  color: black !important;
+  margin-top: 158px !important;
+  .mat-simple-snackbar{
+    font-size: 22px !important;
+    justify-content: center !important;
+  }
+}

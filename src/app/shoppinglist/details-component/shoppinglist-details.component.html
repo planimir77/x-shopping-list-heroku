@@ -1,0 +1,155 @@
+<!-- Loading -->
+<div class="content-center">
+  <app-loading [isLoading]="!shoppinglist"></app-loading>
+</div>
+<!-- Loading -->
+<div *ngIf="shoppinglist" class="py-5">
+  <h1 class="text-center pt-2">
+    {{ shoppinglist?.shoppinglistName | titlecase }}
+  </h1>
+  <mat-tab-group
+    dynamicHeight
+    animationDuration="500ms"
+    [class.is-owner]="isOwner()"
+    [class.is-not-owner]="!isOwner()"
+    #tabGroup
+    (touchstart)="onTouchStart($event)"
+    (touchend)="onTouchEnd($event)"
+    (selectedTabChange)="onTabGroupClicked($event)"
+  >
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">playlist_add_check</mat-icon>
+      </ng-template>
+      <!-- item add -->
+      <app-item-add
+        *ngIf="isOwner(); else emptyContent"
+        [shoppinglist]="shoppinglist"
+        (itemAdded)="onItemAdded($event)"
+      ></app-item-add>
+      <ng-template #emptyContent>
+        <div></div>
+      </ng-template>
+      <!-- item list -->
+      <app-item-list
+        [items]="items"
+        [shoppinglist]="shoppinglist"
+        [isOwner]="isOwner()"
+        [currentUser]="currentUser"
+        (itemChange)="onItemChange($event)"
+        (itemRemove)="onItemRemove($event)"
+      ></app-item-list>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">shopping_cart</mat-icon>
+      </ng-template>
+      <!-- item subscribed list -->
+      <app-item-subscribed-list
+        [subscribedItems]="subscribedItems"
+        [isDone]="isDone"
+        [items]="items"
+        [shoppinglistId]="shoppinglist?._id"
+        (itemChange)="onItemChange($event)"
+      ></app-item-subscribed-list>
+    </mat-tab>
+    <!--  -->
+    <mat-tab *ngIf="isOwner()">
+      <ng-template mat-tab-label>
+        <mat-icon class="example-tab-icon">share</mat-icon>
+      </ng-template>
+      <!-- content -->
+      <div class="container">
+        <div class="row center my-6">
+          <div class="link" #col>
+            <div>
+              <a
+                matRipple
+                href="{{hrefEmail}}"
+                class="btn btn-neutral btn-icon"
+              >
+                <span class="btn-inner--icon">
+                  <img src="./assets/images/icons/email-white.png" />
+                </span>
+              </a>
+            </div>
+            <!-- bubble start -->
+            <div
+              #bubbleEmail
+              class="teaching-bubble"
+              [class.animated]="bubbleEmail.style.visibility === 'visible'"
+              [ngStyle]="
+                setBubblePosition(col.offsetWidth, bubbleEmail.offsetWidth)
+              "
+            >
+              <div class="bubble-arrow-up"></div>
+              <div class="bubble-body">
+                <span>Share via Email</span>
+              </div>
+            </div>
+            <!-- bubble end -->
+          </div>
+          <div class="link">
+            <div>
+              <a
+                matRipple
+                [cdkCopyToClipboard]="url"
+                (click)="copyToClipboard()"
+                class="btn btn-neutral btn-icon"
+              >
+                <span class="btn-inner--icon">
+                  <img src="./assets/images/icons/copy-to-clipboard.png" />
+                </span>
+              </a>
+            </div>
+            <!-- Copy address bubble start -->
+            <div
+              #bubbleCopy
+              class="teaching-bubble"
+              [class.animated]="bubbleCopy.style.visibility === 'visible'"
+              [ngStyle]="
+                setBubblePosition(col.offsetWidth, bubbleCopy.offsetWidth)
+              "
+            >
+              <div class="bubble-arrow-up"></div>
+              <div class="bubble-body">
+                <span>Copy address</span>
+              </div>
+            </div>
+            <!-- Copy address bubble end -->
+          </div>
+          <div class="link">
+            <div>
+              <a
+                matRipple
+                [href]="sanitize(this.hrefViber)"
+                class="btn btn-neutral btn-icon"
+              >
+                <span class="btn-inner--icon">
+                  <img
+                    src="./assets/images/icons/viber_icon_purple_normal.png"
+                  />
+                </span>
+              </a>
+            </div>
+            <!-- share via viber bubble start -->
+            <div
+              #bubbleViber
+              class="teaching-bubble"
+              [class.animated]="bubbleViber.style.visibility === 'visible'"
+              [ngStyle]="
+                setBubblePosition(col.offsetWidth, bubbleViber.offsetWidth)
+              "
+            >
+              <div class="bubble-arrow-up"></div>
+              <div class="bubble-body">
+                <span>Share via Viber</span>
+              </div>
+            </div>
+            <!-- share via viber bubble end -->
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

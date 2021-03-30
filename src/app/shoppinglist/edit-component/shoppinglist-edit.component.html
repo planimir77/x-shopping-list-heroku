@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{ data.name }}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="content" [formGroup]="form" (keyup.enter)="onOkClick()">
+  <p>Change your shopping list name</p>
+  <mat-form-field appearance="outline" class="edit-form-field">
+    <mat-label>Shopping List New Name</mat-label>
+    <input
+      type="text"
+      matInput
+      formControlName="shoppinglistName"
+    />
+    <mat-error *ngIf="checkError('shoppinglistName', ['required'])"
+      >Shopping List Name is required</mat-error
+    >
+    <mat-error
+      *ngIf="checkError('shoppinglistName', ['minlength', 'whitespace'])"
+      >Shopping List Name should be more than
+      {{ minLength }} characters</mat-error
+    >
+    <mat-error *ngIf="checkError('shoppinglistName', ['maxlength'])"
+      >Shopping List Name should be less than
+      {{ maxLength }} characters</mat-error
+    >
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button class="btn-cancel" (click)="onCancelClick()">
+    Cancel
+  </button>
+  <button
+    (click)="onOkClick()"
+    mat-stroked-button
+    type="submit"
+    selected
+    cdkFocusInitial
+    [disabled]="!form.valid"
+    [class.btn-ok]="form.valid"
+  >
+    Ok
+  </button>
+</div>

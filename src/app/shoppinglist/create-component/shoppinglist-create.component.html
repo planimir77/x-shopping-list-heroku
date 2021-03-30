@@ -1,0 +1,49 @@
+<div class="content-center content">
+  <h1>Create New Shopping List</h1>
+  <form [formGroup]="addShopFormGroup" (ngSubmit)="onSubmit()" class="pt-4">
+    <div class="container">
+      <div
+        fxLayout="row nowrap"
+        fxFlexFill
+        fxLayoutGap="20px"
+        fxLayout.xs="column"
+        fxLayoutAlign="space-around center"
+      >
+        <div class="input-container" >
+          <mat-form-field appearance="outline" class="create-form-field">
+            <mat-label>Shopping List Name</mat-label>
+            <input
+              matInput
+              class="caret-color"
+              type="text"
+              placeholder="Type new shopping list name"
+              formControlName="shoppinglistName"
+            />
+            <mat-error *ngIf="checkError('shoppinglistName', ['required'])"
+              >Shopping List Name is required</mat-error
+            >
+            <mat-error *ngIf="checkError('shoppinglistName', ['minlength', 'whitespace'])"
+              >Shopping List Name should be more than {{minLength}} characters</mat-error
+            >
+            <mat-error *ngIf="checkError('shoppinglistName', ['maxlength'])"
+              >Shopping List Name should be less than {{maxLength}} characters</mat-error
+            >
+          </mat-form-field>
+        </div>
+        <div class="btn-container" >
+          <button
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!addShopFormGroup.valid || !isLogged"
+            [class.create]="addShopFormGroup.valid && isLogged"
+            class="btn-create"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <app-loading [isLoading]="isLoading"></app-loading>
+</div>
