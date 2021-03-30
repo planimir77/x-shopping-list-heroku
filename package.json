@@ -14,11 +14,11 @@
   "scripts": {
     "ng": "ng",
     "start": "node server.js",
-    "build": "ng build",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ng build --output-path dist/x-shopping-list"
+    "postinstall": "ng build --prod --output-path dist/x-shopping-list"
   },
   "private": true,
   "dependencies": {
