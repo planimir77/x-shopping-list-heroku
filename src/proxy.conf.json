@@ -1,0 +1,7 @@
+{
+    "/api/*": {
+        "target": "https://x-shopping-list.herokuapp.com",
+        "secure": false,
+        "logLevel": "debug"
+    }
+}
