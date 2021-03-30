@@ -58,7 +58,6 @@ export class RegisterComponent implements OnInit {
   }
 
   public checkError = (controlName: string, errorName: string) => {
-    debugger;
     if (this.form.touched) {
       return this.form.controls[controlName].hasError(errorName);
     }
@@ -73,7 +72,6 @@ export class RegisterComponent implements OnInit {
   onSubmit(): void {
     const data = this.form.value;
     data.username = data.username.toLowerCase();
-    debugger;
 
     this.isLoading = true;
 
