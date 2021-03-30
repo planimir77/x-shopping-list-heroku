@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PrivacyPolicyContentComponent implements OnInit {
 
+  siteUrl: string;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.siteUrl = window.location.origin;
   }
 
 }
