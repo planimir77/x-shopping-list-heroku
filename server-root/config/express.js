@@ -32,16 +32,18 @@ module.exports = (app) => {
 
     app.use(cors({
         origin: config.origin,
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        allowedHeaders: "Origin, X-Requested-With, Cache-Control, Content-Type, Accept, Authorization",
         credentials: true
     }));
 
-    app.use((req, res, next) => {
-        res.setHeader('Access-Control-Allow-Origin', config.origin);
-        res.setHeader('Access-Control-Allow-Credentials', 'true');
-        res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin');
-        next();
-      });
+    // app.use((req, res, next) => {
+    //     res.setHeader('Access-Control-Allow-Origin', config.origin);
+    //     res.setHeader('Access-Control-Allow-Credentials', 'true');
+    //     res.setHeader('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT,DELETE');
+    //     res.setHeader('Access-Control-Allow-Headers', 'Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Authorization, access-control-allow-origin');
+    //     next();
+    //   });
 
     app.use('/api', apiRouter);
 
