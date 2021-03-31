@@ -12,69 +12,69 @@ const apiUrl = environment.apiUrl;
 export class ShoppinglistService {
   constructor(private httpClient: HttpClient) { }
 
-  // put("/api/shoppinglists/:id")
+  // put("/shoppinglists/:id")
   updateShoppinglist(id: string, newName: string): Observable<IShoppinglist> {
     return this.httpClient.put<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/${id}`, 
+      `${apiUrl}/shoppinglists/${id}`, 
       { newName }, 
       );
   }
-  // put("/api/shoppinglists/add-item")
+  // put("/shoppinglists/add-item")
   addShoppinglistItem(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
     return this.httpClient.put<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/add-item`,
+      `${apiUrl}/shoppinglists/add-item`,
       { shoppinglistId, itemId },
     );
   }
-  // post("/api/shoppinglists/create")
+  // post("/shoppinglists/create")
   createShoppinglist(name: string): Observable<IShoppinglist> {
     return this.httpClient.post<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/create`,
+      `${apiUrl}/shoppinglists/create`,
       {shoppinglistName: name},
     );
   }
-  // get("/api/shoppinglists")
+  // get("/shoppinglists")
   loadUserShoppinglists(): Observable<IShoppinglist[]> {
     return this.httpClient.get<IShoppinglist[]>(
-      `${apiUrl}/api/shoppinglists`
+      `${apiUrl}/shoppinglists`
     );
   }
-  // get("/api/shoppinglists/favorite")
+  // get("/shoppinglists/favorite")
   getFavoriteShoppinglist(): Observable<IShoppinglist> {
     return this.httpClient.get<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/favorite`
+      `${apiUrl}/shoppinglists/favorite`
     );
   }
-  // get("/api/shoppinglists/:id")
+  // get("/shoppinglists/:id")
   loadShoppinglist(id: string): Observable<IShoppinglist> {
     return this.httpClient.get<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/${id}`
+      `${apiUrl}/shoppinglists/${id}`
     );
   }
-  // delete("/api/shoppinglists/:id")
+  // delete("/shoppinglists/:id")
   deleteShoppinglist(id: string): Observable<IShoppinglist> {
     return this.httpClient.delete<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/${id}`
+      `${apiUrl}/shoppinglists/${id}`
     );
   }
-  // put("/api/shoppinglists/remove-item")
+  // put("/shoppinglists/remove-item")
   removeShoppinglistItem(shoppinglistId: string, itemId: string): Observable<IShoppinglist> {
     return this.httpClient.put<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/remove-item`,
+      `${apiUrl}/shoppinglists/remove-item`,
       { shoppinglistId, itemId },
     );
   }
-  // put("/api/shoppinglists/not-favorite")
+  // put("/shoppinglists/not-favorite")
   shoppinglistNotFavorite(shoppinglistId: string): Observable<IShoppinglist> {
     return this.httpClient.put<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/not-favorite`,
+      `${apiUrl}/shoppinglists/not-favorite`,
       { shoppinglistId },
     );
   }
-  // put("/api/shoppinglists/favorite")
+  // put("/shoppinglists/favorite")
   shoppinglistFavorite(shoppinglistId: string): Observable<IShoppinglist> {
     return this.httpClient.put<IShoppinglist>(
-      `${apiUrl}/api/shoppinglists/favorite`,
+      `${apiUrl}/shoppinglists/favorite`,
       { shoppinglistId },
     );
   }

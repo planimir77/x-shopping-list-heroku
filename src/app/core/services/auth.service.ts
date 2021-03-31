@@ -23,25 +23,25 @@ export class AuthService {
   }
 
   login(data: any): Observable<any> {
-    return this.http.post(`${apiUrl}/api/users/login`, data).pipe(
+    return this.http.post(`${apiUrl}/users/login`, data).pipe(
       tap((user: IUser) => this._currentUser.next(user))
     );
   }
 
   register(data: any): Observable<any> {
-    return this.http.post(`${apiUrl}/api/users/register`, data).pipe(
+    return this.http.post(`${apiUrl}/users/register`, data).pipe(
       tap((user: IUser) => this._currentUser.next(user))
     );
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${apiUrl}/api/users/logout`, {}).pipe(
+    return this.http.post(`${apiUrl}/users/logout`, {}).pipe(
       tap((user: IUser) => this._currentUser.next(null))
     );
   }
 
   authenticate(): Observable<any> {
-    return this.http.get(`${apiUrl}/api/users/profile`).pipe(
+    return this.http.get(`${apiUrl}/users/profile`).pipe(
       tap((user: IUser) => this._currentUser.next(user)),
       catchError(() => {
         this._currentUser.next(null);

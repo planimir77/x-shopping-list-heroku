@@ -11,39 +11,39 @@ export class ItemService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // get("/api/item/:_id")
+  // get("/item/:_id")
   loadItem(_id: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
-      `${apiUrl}/api/item/${_id}`
+      `${apiUrl}/item/${_id}`
     );
   }
-  // get("/api/item/by-name/:itemName")
+  // get("/item/by-name/:itemName")
   loadItemByName(itemName: string): Observable<IItem> {
     return this.httpClient.get<IItem>(
-      `${apiUrl}/api/item/by-name/${itemName}`
+      `${apiUrl}/item/by-name/${itemName}`
     );
   }
 
-  // post("/api/item/create")
+  // post("/item/create")
   createItem(itemName: string, shoppinglistId: string): Observable<IItem> {
     return this.httpClient.post<IItem>(
-      `${apiUrl}/api/item/create`,
+      `${apiUrl}/item/create`,
       { itemName, shoppinglistId },
     );
   }
 
-  // put("/api/item/subscribe")
+  // put("/item/subscribe")
   subscribe(itemId: string, shoppinglistId: string) {
     return this.httpClient.put<IItem>(
-      `${apiUrl}/api/item/subscribe`,
+      `${apiUrl}/item/subscribe`,
       { itemId, shoppinglistId },
     );
   }
 
-  // put("/api/item/unsubscribe")
+  // put("/item/unsubscribe")
   unsubscribe(itemId: string, shoppinglistId: string) {
     return this.httpClient.put<IItem>(
-      `${apiUrl}/api/item/unsubscribe`,
+      `${apiUrl}/item/unsubscribe`,
       { itemId, shoppinglistId },
     );
   }

@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: `${window.location.origin}`,
+  apiUrl: `${window.location.origin}/api`,
 };
 
 /*
