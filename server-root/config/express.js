@@ -30,8 +30,6 @@ module.exports = (app) => {
 
     app.use(express.static(path.resolve(__basedir, 'static')));
 
-    console.log('Origin : '+ config.origin);
-
     app.use(cors({
         origin: config.origin,
         credentials: true
