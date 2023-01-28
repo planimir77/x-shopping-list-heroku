@@ -8,8 +8,8 @@
   "license": "MIT",
   "version": "1.0.0",
   "engines": {
-    "node": "12.16.3",
-    "npm": "6.14.4"
+    "node": "16.14.0",
+    "npm": "8.3.1"
   },
   "scripts": {
     "ng": "ng",
@@ -17,8 +17,7 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ng build --prod --output-path dist/x-shopping-list"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
