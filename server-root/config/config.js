@@ -9,7 +9,8 @@ const config = {
     production: {
         port: process.env.PORT || 4200,
         dbURL: process.env.DB_URL_CREDENTIALS,
-        origin: ['https://x-shopping-list.herokuapp.com', 'https://x-shopping-list.vercel.app']
+        origin: ['https://x-shopping-list.vercel.app']
+        //origin: ['https://x-shopping-list.herokuapp.com']
     },
 };
 
