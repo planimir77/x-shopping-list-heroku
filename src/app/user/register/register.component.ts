@@ -84,7 +84,7 @@ export class RegisterComponent implements OnInit {
         },
         error: (response) => {
           this.isLoading = false;
-          this.snackBar.open(`${response.error.message}`, "", {
+          this.snackBar.open(`${response.error.message || response.statusText || response.message}`, "", {
             duration: 5000,
             panelClass: "warning",
             horizontalPosition: this.horizontalPosition,
